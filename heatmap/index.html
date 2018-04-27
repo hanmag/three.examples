@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>three.examples - heatmap</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+		body {
+			color: #cccccc;
+			font-family: Monospace;
+			font-size: 13px;
+			text-align: center;
+
+			background-color: #000000;
+			margin: 0px;
+			overflow: hidden;
+		}
+
+		#info {
+			position: absolute;
+			top: 0px;
+			width: 100%;
+			padding: 5px;
+		}
+
+		a {
+			color: #0080ff;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="container"></div>
+	<div id="info">
+		<a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - heatmap - by
+		<a href="https://github.com/hanmag">daemon</a>
+	</div>
+
+	<script src="../lib/dat.gui.min.js"></script>
+	<script src="../lib/three.min.js"></script>
+	<script src="../lib/OrbitControls.js"></script>
+	<script src="../lib/stats.min.js"></script>
+
+	<script type="x-shader/x-vertex" id="vertexshader">
+
+		uniform float size; attribute float opacity; attribute vec3 color; varying vec3 vColor; varying float vOpacity; void main()
+		{ vColor = color; vOpacity = opacity; vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 ); gl_PointSize = size; gl_Position
+		= projectionMatrix * mvPosition; }
+
+	</script>
+
+	<script type="x-shader/x-fragment" id="fragmentshader">
+
+		uniform sampler2D texture; varying vec3 vColor; varying float vOpacity; void main() { gl_FragColor = vec4( vColor, vOpacity
+		); gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord ); }
+
+	</script>
+
+	<script src="main.js"></script>
+</body>
+
+</html>
