@@ -148,7 +148,7 @@ function init() {
     material = new THREE.ShaderMaterial({
         uniforms: {
             size: {
-                value: window.innerWidth * 0.045
+                value: window.innerHeight * 0.085
             },
             texture: {
                 value: new THREE.TextureLoader().load("../textures/particle2.png")
@@ -192,7 +192,7 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    material.uniforms.size.value = window.innerWidth * 0.045;
+    material.uniforms.size.value = window.innerHeight * 0.085;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
