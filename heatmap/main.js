@@ -7,7 +7,7 @@ var particles, randomParticles;
 var pointCloud;
 var particlePositions;
 var heatMesh;
-
+var material;
 var maxParticleCount = 100;
 var particleCount = 30;
 var heatmapParticleIndex = {};
@@ -145,10 +145,10 @@ function init() {
     geometry.setDrawRange(0, 0);
 
     // 粒子材质
-    var material = new THREE.ShaderMaterial({
+    material = new THREE.ShaderMaterial({
         uniforms: {
             size: {
-                value: 60.0
+                value: window.innerWidth * 0.045
             },
             texture: {
                 value: new THREE.TextureLoader().load("../textures/particle2.png")
@@ -191,6 +191,8 @@ function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+
+    material.uniforms.size.value = window.innerWidth * 0.045;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
