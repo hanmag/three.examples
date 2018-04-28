@@ -197,11 +197,11 @@ function colorful(alpha) {
         case 'Grey':
             return [0.5, 0.5, 0.5];
         case 'RGB1':
-            return [alpha, alpha > 0.5 ? 2 - 2 * alpha : 2 * alpha, 1 - alpha];
+            return [alpha * 0.5, alpha > 0.5 ? 2 - 2 * alpha : 2 * alpha, 1 - alpha];
         case 'RGB2':
-            return [alpha, 2 * Math.abs(0.5 - alpha), 1 - alpha];
+            return [alpha * 0.5, 2 * Math.abs(0.5 - alpha), 1 - alpha];
         case 'RGB3':
-            return [alpha, 1 - alpha, 2 * Math.abs(0.5 - alpha)];
+            return [alpha * 0.5, 1 - alpha, 2 * Math.abs(0.5 - alpha)];
     }
 }
 
